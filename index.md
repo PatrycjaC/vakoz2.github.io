@@ -1,7 +1,7 @@
 ## Zadanie GEO
 
 Przestępstwa dokonane w promieniu kilometra od ratusza.
-```markdown
+``'
 [query1](http://github.com/vakoz2/nosql)
 {
     "query": {
