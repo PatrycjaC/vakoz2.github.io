@@ -1,7 +1,6 @@
 ## Zadanie GEO
 
 Przestępstwa dokonane w promieniu kilometra od ratusza
-[click](http://https://github.com/vakoz2/vakoz2.github.io/blob/master/hello.md)
 ```markdown
 {
     "query": {
