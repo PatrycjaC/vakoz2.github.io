@@ -1,4 +1,6 @@
 ## Zadanie GEO
+### Elasticsearch
+Aby wygenerować poniższe geojsony należy uruchomić skrypt **el_geo.bat**, znajdujący się w głównym katalogu. Korzystam z bazy z zadania 1. Skrypt zapisuje pliki wynikowe do katalogu geojson.
 
 Przestępstwa dokonane w promieniu kilometra od ratusza
 ```markdown
@@ -68,6 +70,22 @@ Kradzieże na terenie lotniska (bounding_box)
 <script src="https://embed.github.com/view/geojson/vakoz2/nosql/master/geojson/query3.geojson"></script>
 
 ### Posgresql
+Korzystając z bazy z zadania pierwszego zainstalowałem rozszerzenie [PostGIS](http://postgis.net). Aby móc korzystać z zapytań geolokacyjnych należy wykonać następujące komendy:
+```markdown
+psql -d test -c "CREATE EXTENSION IF NOT EXISTS postgis"
+psql -d test -c "ALTER TABLE crimes ADD COLUMN geom geometry(POINT,4326)"
+psql -d test -c "UPDATE crimes SET geom = ST_SetSRID(ST_MakePoint(\"Longitude\",\"Latitude\"),4326)"
+```
+Zwróciło **UPDATE 9773**, czyli wszystkie wiersze zostały zaktualizowane.
+
+Generowanie geojsonów już sobie odpuściełem (jest to oczywiście trywialne - wystarczy wywołać **sql2csv**(CSVKit) z odpowiednim zapytaniem i przy pomocy **csvjson** przerobić wynik na geojson). Na dowód, że wszystko jest ok, zadam pytanie o to samo, o co pytałem w przykładzie 2 w Elasticku.
+```markdown
+SELECT "Date", "Primary Type", "Description", "Location Description", "Arrest", "Latitude", "Longitude" 
+FROM crimes 
+WHERE geom &&
+ST_MakeEnvelope(-87.63119101524353,41.89085702404937, -87.62666344642639,41.89322904173341, 4326)
+```
+Wynik:
 ```markdown
         Date         |    Primary Type    |          Description          | Location Description | Arrest |   Latitude   |   Longitude
 ---------------------+--------------------+-------------------------------+----------------------+--------+--------------+---------------
@@ -83,3 +101,4 @@ Kradzieże na terenie lotniska (bounding_box)
  2013-05-20 17:44:00 | BATTERY            | SIMPLE                        | CTA TRAIN            | t      | 41.891404732 | -87.628061509
 (10 wierszy)
 ```
+Jak widać wszystkie punkty się zgadzają.
