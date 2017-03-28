@@ -78,27 +78,30 @@ psql -d test -c "UPDATE crimes SET geom = ST_SetSRID(ST_MakePoint(\"Longitude\",
 ```
 Zwróciło **UPDATE 9773**, czyli wszystkie wiersze zostały zaktualizowane.
 
-Generowanie geojsonów już sobie odpuściełem (jest to oczywiście trywialne - wystarczy wywołać **sql2csv**(CSVKit) z odpowiednim zapytaniem i przy pomocy **csvjson** przerobić wynik na geojson). Na dowód, że wszystko jest ok, zadam pytanie o to samo, o co pytałem w przykładzie 2 w Elasticku.
+Generowanie geojsonów już sobie odpuściełem (jest to oczywiście trywialne - wystarczy wywołać **sql2csv**(CSVKit) z odpowiednim zapytaniem i przy pomocy **csvjson** przerobić wynik na geojson). Na dowód, że wszystko jest ok, zadam pytanie o to samo, o co pytałem w ostatnim przykładzie w Elasticku.
 ```markdown
-SELECT "Date", "Primary Type", "Description", "Location Description", "Arrest", "Latitude", "Longitude" 
+SELECT "Date", "Primary Type", "Description", "Location Description", "Arrest"
 FROM crimes 
-WHERE geom &&
-ST_MakeEnvelope(-87.63119101524353,41.89085702404937, -87.62666344642639,41.89322904173341, 4326)
+WHERE "Primary Type" LIKE '%THEFT%' AND geom &&
+ST_MakeEnvelope(-87.93834686279295, 41.95693703889415, -87.87483215332031, 42.0064481470799, 4326)
 ```
 Wynik:
 ```markdown
-        Date         |    Primary Type    |          Description          | Location Description | Arrest |   Latitude   |   Longitude
----------------------+--------------------+-------------------------------+----------------------+--------+--------------+---------------
- 2014-03-07 19:30:00 | DECEPTIVE PRACTICE | ILLEGAL USE CASH CARD         | HOTEL/MOTEL          | f      |   41.8926701 | -87.628106353
- 2013-01-24 17:30:00 | THEFT              | RETAIL THEFT                  | DEPARTMENT STORE     | t      |  41.89164013 | -87.630200131
- 2013-10-27 01:15:00 | BATTERY            | SIMPLE                        | RESTAURANT           | t      | 41.892628411 |  -87.63115524
- 2016-09-24 15:00:00 | THEFT              | FROM BUILDING                 | HOTEL/MOTEL          | f      | 41.891678767 | -87.627551654
- 2013-01-14 15:30:00 | THEFT              | FROM BUILDING                 | RESTAURANT           | f      | 41.892628411 |  -87.63115524
- 2012-06-21 15:30:00 | DECEPTIVE PRACTICE | CREDIT CARD FRAUD             | CTA TRAIN            | f      | 41.891404732 | -87.628061509
- 2014-03-25 10:25:00 | THEFT              | RETAIL THEFT                  | GROCERY FOOD STORE   | t      |  41.89200307 | -87.628076963
- 2014-04-18 23:00:00 | THEFT              | POCKET-PICKING                | CTA BUS              | f      | 41.892628411 |  -87.63115524
- 2013-04-13 23:15:00 | BATTERY            | AGGRAVATED: OTHER DANG WEAPON | BAR OR TAVERN        | f      | 41.890851747 | -87.628728678
- 2013-05-20 17:44:00 | BATTERY            | SIMPLE                        | CTA TRAIN            | t      | 41.891404732 | -87.628061509
-(10 wierszy)
+        Date         |    Primary Type     |   Description   |              Location Description              | Arrest
+---------------------+---------------------+-----------------+------------------------------------------------+--------
+ 2016-06-06 14:00:00 | THEFT               | PURSE-SNATCHING | CTA TRAIN                                      | f
+ 2015-07-27 16:30:00 | THEFT               | OVER $500       | AIRPORT TERMINAL UPPER LEVEL - SECURE AREA     | f
+ 2013-03-28 15:30:00 | THEFT               | OVER $500       | AIRPORT TERMINAL LOWER LEVEL - NON-SECURE AREA | f
+ 2014-03-21 08:00:00 | MOTOR VEHICLE THEFT | AUTOMOBILE      | AIRPORT VENDING ESTABLISHMENT                  | f
+ 2016-08-21 14:09:00 | THEFT               | $500 AND UNDER  | AIRCRAFT                                       | f
+ 2012-03-30 00:01:00 | THEFT               | OVER $500       | PARKING LOT/GARAGE(NON.RESID.)                 | f
+ 2015-09-02 12:00:00 | THEFT               | $500 AND UNDER  | AIRPORT VENDING ESTABLISHMENT                  | f
+ 2013-10-06 20:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f
+ 2016-11-06 11:00:00 | THEFT               | FROM BUILDING   | AIRPORT TERMINAL UPPER LEVEL - SECURE AREA     | f
+ 2014-07-30 16:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL UPPER LEVEL - NON-SECURE AREA | f
+ 2013-03-14 17:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f
+ 2016-01-22 14:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f
+ 2015-09-20 18:00:00 | THEFT               | RETAIL THEFT    | AIRPORT VENDING ESTABLISHMENT                  | f
+(13 wierszy)
 ```
 Jak widać wszystkie punkty się zgadzają.
