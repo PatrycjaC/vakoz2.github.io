@@ -87,21 +87,21 @@ ST_MakeEnvelope(-87.93834686279295, 41.95693703889415, -87.87483215332031, 42.00
 ```
 Wynik:
 ```markdown
-        Date         |    Primary Type     |   Description   |              Location Description              | Arrest
----------------------+---------------------+-----------------+------------------------------------------------+--------
- 2016-06-06 14:00:00 | THEFT               | PURSE-SNATCHING | CTA TRAIN                                      | f
- 2015-07-27 16:30:00 | THEFT               | OVER $500       | AIRPORT TERMINAL UPPER LEVEL - SECURE AREA     | f
- 2013-03-28 15:30:00 | THEFT               | OVER $500       | AIRPORT TERMINAL LOWER LEVEL - NON-SECURE AREA | f
- 2014-03-21 08:00:00 | MOTOR VEHICLE THEFT | AUTOMOBILE      | AIRPORT VENDING ESTABLISHMENT                  | f
- 2016-08-21 14:09:00 | THEFT               | $500 AND UNDER  | AIRCRAFT                                       | f
- 2012-03-30 00:01:00 | THEFT               | OVER $500       | PARKING LOT/GARAGE(NON.RESID.)                 | f
- 2015-09-02 12:00:00 | THEFT               | $500 AND UNDER  | AIRPORT VENDING ESTABLISHMENT                  | f
- 2013-10-06 20:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f
- 2016-11-06 11:00:00 | THEFT               | FROM BUILDING   | AIRPORT TERMINAL UPPER LEVEL - SECURE AREA     | f
- 2014-07-30 16:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL UPPER LEVEL - NON-SECURE AREA | f
- 2013-03-14 17:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f
- 2016-01-22 14:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f
- 2015-09-20 18:00:00 | THEFT               | RETAIL THEFT    | AIRPORT VENDING ESTABLISHMENT                  | f
+        Date         |    Primary Type     |   Description   |              Location Description              | Arrest |   Longitude   |   Latitude
+---------------------+---------------------+-----------------+------------------------------------------------+--------+---------------+--------------
+ 2016-06-06 14:00:00 | THEFT               | PURSE-SNATCHING | CTA TRAIN                                      | f      | -87.906463155 | 41.979006297
+ 2015-07-27 16:30:00 | THEFT               | OVER $500       | AIRPORT TERMINAL UPPER LEVEL - SECURE AREA     | f      | -87.904976266 |   41.9764212
+ 2013-03-28 15:30:00 | THEFT               | OVER $500       | AIRPORT TERMINAL LOWER LEVEL - NON-SECURE AREA | f      | -87.906463155 | 41.979006297
+ 2014-03-21 08:00:00 | MOTOR VEHICLE THEFT | AUTOMOBILE      | AIRPORT VENDING ESTABLISHMENT                  | f      | -87.883611316 | 41.980826277
+ 2016-08-21 14:09:00 | THEFT               | $500 AND UNDER  | AIRCRAFT                                       | f      | -87.906463155 | 41.979006297
+ 2012-03-30 00:01:00 | THEFT               | OVER $500       | PARKING LOT/GARAGE(NON.RESID.)                 | f      | -87.883611316 | 41.980826277
+ 2015-09-02 12:00:00 | THEFT               | $500 AND UNDER  | AIRPORT VENDING ESTABLISHMENT                  | f      | -87.882404127 | 41.983030629
+ 2013-10-06 20:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f      | -87.906463155 | 41.979006297
+ 2016-11-06 11:00:00 | THEFT               | FROM BUILDING   | AIRPORT TERMINAL UPPER LEVEL - SECURE AREA     | f      | -87.905227221 | 41.976290414
+ 2014-07-30 16:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL UPPER LEVEL - NON-SECURE AREA | f      | -87.905227221 | 41.976290414
+ 2013-03-14 17:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f      | -87.890372151 | 41.974861952
+ 2016-01-22 14:00:00 | THEFT               | $500 AND UNDER  | AIRPORT TERMINAL LOWER LEVEL - SECURE AREA     | f      | -87.906463155 | 41.979006297
+ 2015-09-20 18:00:00 | THEFT               | RETAIL THEFT    | AIRPORT VENDING ESTABLISHMENT                  | f      | -87.906864845 | 41.979435886
 (13 wierszy)
 ```
 Jak widać wszystkie punkty się zgadzają.
